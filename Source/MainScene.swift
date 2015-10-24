@@ -15,6 +15,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
     weak var gameOverScoreLabel: CCLabelTTF!
     weak var highScoreLabel: CCLabelTTF!
     weak var newHighScoreLabel: CCLabelTTF!
+    weak var ring: CCSprite!
     
     var gameState: GameState = .Title
     
@@ -81,11 +82,23 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
             score++
             
             circle.bounceTap()
+            animateRing()
             changeBackgroundColor()
         }
         else {
             triggerGameOver()
         }
+    }
+    
+    func animateRing() {
+        ring.opacity = 1
+        ring.scale = 0
+        
+        ring.position.x = circle.position.x
+        ring.position.y = circle.position.y
+        
+        ring.runAction(CCActionScaleTo(duration: 0.5, scale: 1))
+        ring.runAction(CCActionFadeOut(duration: 0.5))
     }
     
     func triggerGameOver() {
