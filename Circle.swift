@@ -27,7 +27,7 @@ class Circle: CCSprite {
     
     func bounceTap() {
         if totalVelocity < 600 {
-            totalVelocity += 25
+            totalVelocity += 50
         }
         
         let xVelocity = physicsBody.velocity.x
