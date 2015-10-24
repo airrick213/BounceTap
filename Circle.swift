@@ -10,6 +10,8 @@ import Foundation
 
 class Circle: CCSprite {
     
-    var velocity: Double = 0
+    func findComponentVelocity(totalVelocity: CGFloat, component1: CGFloat) -> CGFloat {
+        return sqrt(totalVelocity * totalVelocity - component1 * component1)
+    }
     
 }
