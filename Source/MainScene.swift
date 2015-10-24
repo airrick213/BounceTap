@@ -32,12 +32,50 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
         
         self.animationManager.runAnimationsForSequenceNamed("Ready")
         
-        circle.physicsBody.velocity.x = CGFloat(arc4random_uniform(150))
-        circle.physicsBody.velocity.y = circle.findComponentVelocity(150, component1: circle.physicsBody.velocity.x)
+        circle.totalVelocity = 150
+        
+        circle.physicsBody.velocity.x = CGFloat(arc4random_uniform(UInt32(circle.totalVelocity)))
+        circle.physicsBody.velocity.y = circle.findComponentVelocity(circle.physicsBody.velocity.x)
+    }
+    
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, circle: CCNode!, verticalWall: CCNode!) -> Bool {
+        circle.physicsBody.velocity.x = -circle.physicsBody.velocity.x
+        
+        return true
+    }
+    
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, circle: CCNode!, horizontalWall: CCNode!) -> Bool {
+        circle.physicsBody.velocity.y = -circle.physicsBody.velocity.y
+        
+        return true
     }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+        if gameState == .GameOver || gameState == .Title {
+            return
+        }
+        else if gameState == .Ready {
+            gameState = .Playing
+            
+            self.animationManager.runAnimationsForSequenceNamed("Playing")
+        }
         
+        if circle.tapped(touch.locationInWorld()) {
+            score++
+            
+            circle.bounceTap()
+        }
+        else {
+            triggerGameOver()
+        }
+    }
+    
+    func triggerGameOver() {
+        gameState = .GameOver
+        
+        circle.totalVelocity = 0
+        circle.physicsBody.velocity.x = 0
+        circle.physicsBody.velocity.y = 0
     }
     
 }
