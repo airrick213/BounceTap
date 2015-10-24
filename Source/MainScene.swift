@@ -12,6 +12,9 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
     weak var circle: Circle!
     weak var tapTheCircle: CCLabelTTF!
     weak var gamePhysicsNode: CCPhysicsNode!
+    weak var gameOverScoreLabel: CCLabelTTF!
+    weak var highScoreLabel: CCLabelTTF!
+    weak var newHighScoreLabel: CCLabelTTF!
     
     var gameState: GameState = .Title
     
@@ -32,6 +35,14 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
         
         self.animationManager.runAnimationsForSequenceNamed("Ready")
         
+        score = 0
+        newHighScoreLabel.visible = false
+        
+        circle.physicsBody.affectedByGravity = false
+        
+        circle.position.x = 0.5
+        circle.position.y = 0.5
+        
         circle.totalVelocity = 150
         
         circle.physicsBody.velocity.x = CGFloat(arc4random_uniform(UInt32(circle.totalVelocity)))
@@ -39,13 +50,17 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
     }
     
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, circle: CCNode!, verticalWall: CCNode!) -> Bool {
-        circle.physicsBody.velocity.x = -circle.physicsBody.velocity.x
+        if gameState != .GameOver {
+            circle.physicsBody.velocity.x = -circle.physicsBody.velocity.x
+        }
         
         return true
     }
     
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, circle: CCNode!, horizontalWall: CCNode!) -> Bool {
-        circle.physicsBody.velocity.y = -circle.physicsBody.velocity.y
+        if gameState != .GameOver {
+            circle.physicsBody.velocity.y = -circle.physicsBody.velocity.y
+        }
         
         return true
     }
@@ -76,6 +91,26 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
         circle.totalVelocity = 0
         circle.physicsBody.velocity.x = 0
         circle.physicsBody.velocity.y = 0
+        
+        NSThread.sleepForTimeInterval(0.5)
+       
+        circle.physicsBody.affectedByGravity = true
+        
+        self.animationManager.runAnimationsForSequenceNamed("GameOver")
+        
+        gameOverScoreLabel.string = "Score: \(score)"
+        
+        let highScore = NSUserDefaults().integerForKey("high_score")
+        
+        if score <= highScore {
+            highScoreLabel.string = "High Score: \(highScore)"
+        }
+        else {
+            highScoreLabel.string = "High Score: \(score)"
+            NSUserDefaults().setInteger(score, forKey: "high_score")
+            
+            newHighScoreLabel.visible = true
+        }
     }
     
 }
