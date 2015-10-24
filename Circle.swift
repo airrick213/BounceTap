@@ -33,7 +33,7 @@ class Circle: CCSprite {
         let xVelocity = physicsBody.velocity.x
         let yVelocity = physicsBody.velocity.y
         
-        physicsBody.velocity.x = -CGFloat(arc4random_uniform(UInt32(totalVelocity)))
+        physicsBody.velocity.x = CGFloat(arc4random_uniform(UInt32(totalVelocity)))
         physicsBody.velocity.y = findComponentVelocity(physicsBody.velocity.x)
             
         if xVelocity > 0 {
