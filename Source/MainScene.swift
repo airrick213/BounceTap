@@ -38,6 +38,8 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
         score = 0
         newHighScoreLabel.visible = false
         
+        transitionBackgroundColor(duration: 0.2, red: 0, green: 0, blue: 1)
+        
         circle.physicsBody.affectedByGravity = false
         
         circle.position.x = 0.5
@@ -79,6 +81,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
             score++
             
             circle.bounceTap()
+            changeBackgroundColor()
         }
         else {
             triggerGameOver()
@@ -111,6 +114,51 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
             
             newHighScoreLabel.visible = true
         }
+    }
+    
+    func changeBackgroundColor() {
+        let blue = background.color.blue
+        let green = background.color.green
+        let red = background.color.red
+        
+        let transitionTime: Double = 0.5
+        
+        if blue == 1 {
+            if green < 1 {
+                if red == 0 {
+                    transitionBackgroundColor(duration: transitionTime, red: red, green: green + 0.25, blue: blue)
+                }
+                else {
+                    transitionBackgroundColor(duration: transitionTime, red: red - 0.25, green: green, blue: blue)
+                }
+            }
+        }
+        
+        if green == 1 {
+            if red < 1 {
+                if blue == 0 {
+                    transitionBackgroundColor(duration: transitionTime, red: red + 0.25, green: green, blue: blue)
+                }
+                else {
+                    transitionBackgroundColor(duration: transitionTime, red: red, green: green, blue: blue - 0.25)
+                }
+            }
+        }
+        
+        if red == 1 {
+            if blue < 1 {
+                if green == 0 {
+                    transitionBackgroundColor(duration: transitionTime, red: red, green: green, blue: blue + 0.25)
+                }
+                else {
+                    transitionBackgroundColor(duration: transitionTime, red: red, green: green - 0.25, blue: blue)
+                }
+            }
+        }
+    }
+    
+    func transitionBackgroundColor(duration duration: Double, red: Float, green: Float, blue: Float) {
+        background.runAction(CCActionTintTo(duration: duration, color: CCColor(red: red, green: green, blue: blue)))
     }
     
 }
