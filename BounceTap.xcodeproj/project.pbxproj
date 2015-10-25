@@ -10,6 +10,17 @@
 		0719E3531BDB4F2100E251B3 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0719E3521BDB4F2100E251B3 /* Circle.swift */; settings = {ASSET_TAGS = (); }; };
 		0719E36B1BDCAC6300E251B3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0719E36A1BDCAC6300E251B3 /* GameKit.framework */; };
 		0719E36D1BDCB4EA00E251B3 /* GameCenterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0719E36C1BDCB4EA00E251B3 /* GameCenterInteractor.swift */; settings = {ASSET_TAGS = (); }; };
+		0719E3981BDCCF4600E251B3 /* beep-ping.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E38D1BDCCF4600E251B3 /* beep-ping.wav */; settings = {ASSET_TAGS = (); }; };
+		0719E3991BDCCF4600E251B3 /* BounceTap-soundtrack@100bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E38E1BDCCF4600E251B3 /* BounceTap-soundtrack@100bpm.wav */; settings = {ASSET_TAGS = (); }; };
+		0719E39A1BDCCF4600E251B3 /* BounceTap-soundtrack@105bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E38F1BDCCF4600E251B3 /* BounceTap-soundtrack@105bpm.wav */; settings = {ASSET_TAGS = (); }; };
+		0719E39B1BDCCF4600E251B3 /* BounceTap-soundtrack@110bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E3901BDCCF4600E251B3 /* BounceTap-soundtrack@110bpm.wav */; settings = {ASSET_TAGS = (); }; };
+		0719E39C1BDCCF4600E251B3 /* BounceTap-soundtrack@115bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E3911BDCCF4600E251B3 /* BounceTap-soundtrack@115bpm.wav */; settings = {ASSET_TAGS = (); }; };
+		0719E39D1BDCCF4600E251B3 /* BounceTap-soundtrack@120bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E3921BDCCF4600E251B3 /* BounceTap-soundtrack@120bpm.wav */; settings = {ASSET_TAGS = (); }; };
+		0719E39E1BDCCF4600E251B3 /* BounceTap-soundtrack@75bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E3931BDCCF4600E251B3 /* BounceTap-soundtrack@75bpm.wav */; settings = {ASSET_TAGS = (); }; };
+		0719E39F1BDCCF4600E251B3 /* BounceTap-soundtrack@80bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E3941BDCCF4600E251B3 /* BounceTap-soundtrack@80bpm.wav */; settings = {ASSET_TAGS = (); }; };
+		0719E3A01BDCCF4600E251B3 /* BounceTap-soundtrack@85bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E3951BDCCF4600E251B3 /* BounceTap-soundtrack@85bpm.wav */; settings = {ASSET_TAGS = (); }; };
+		0719E3A11BDCCF4600E251B3 /* BounceTap-soundtrack@90bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E3961BDCCF4600E251B3 /* BounceTap-soundtrack@90bpm.wav */; settings = {ASSET_TAGS = (); }; };
+		0719E3A21BDCCF4600E251B3 /* BounceTap-soundtrack@95bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E3971BDCCF4600E251B3 /* BounceTap-soundtrack@95bpm.wav */; settings = {ASSET_TAGS = (); }; };
 		5B121030197484FA004C1E1D /* BounceTapActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* BounceTapActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A046D7519E84C36004C4763 /* MainScene.swift */; };
@@ -154,6 +165,17 @@
 		0719E3521BDB4F2100E251B3 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		0719E36A1BDCAC6300E251B3 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		0719E36C1BDCB4EA00E251B3 /* GameCenterInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterInteractor.swift; sourceTree = "<group>"; };
+		0719E38D1BDCCF4600E251B3 /* beep-ping.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "beep-ping.wav"; sourceTree = "<group>"; };
+		0719E38E1BDCCF4600E251B3 /* BounceTap-soundtrack@100bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@100bpm.wav"; sourceTree = "<group>"; };
+		0719E38F1BDCCF4600E251B3 /* BounceTap-soundtrack@105bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@105bpm.wav"; sourceTree = "<group>"; };
+		0719E3901BDCCF4600E251B3 /* BounceTap-soundtrack@110bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@110bpm.wav"; sourceTree = "<group>"; };
+		0719E3911BDCCF4600E251B3 /* BounceTap-soundtrack@115bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@115bpm.wav"; sourceTree = "<group>"; };
+		0719E3921BDCCF4600E251B3 /* BounceTap-soundtrack@120bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@120bpm.wav"; sourceTree = "<group>"; };
+		0719E3931BDCCF4600E251B3 /* BounceTap-soundtrack@75bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@75bpm.wav"; sourceTree = "<group>"; };
+		0719E3941BDCCF4600E251B3 /* BounceTap-soundtrack@80bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@80bpm.wav"; sourceTree = "<group>"; };
+		0719E3951BDCCF4600E251B3 /* BounceTap-soundtrack@85bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@85bpm.wav"; sourceTree = "<group>"; };
+		0719E3961BDCCF4600E251B3 /* BounceTap-soundtrack@90bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@90bpm.wav"; sourceTree = "<group>"; };
+		0719E3971BDCCF4600E251B3 /* BounceTap-soundtrack@95bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@95bpm.wav"; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121011197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -278,6 +300,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0719E38C1BDCCF4600E251B3 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				0719E38D1BDCCF4600E251B3 /* beep-ping.wav */,
+				0719E38E1BDCCF4600E251B3 /* BounceTap-soundtrack@100bpm.wav */,
+				0719E38F1BDCCF4600E251B3 /* BounceTap-soundtrack@105bpm.wav */,
+				0719E3901BDCCF4600E251B3 /* BounceTap-soundtrack@110bpm.wav */,
+				0719E3911BDCCF4600E251B3 /* BounceTap-soundtrack@115bpm.wav */,
+				0719E3921BDCCF4600E251B3 /* BounceTap-soundtrack@120bpm.wav */,
+				0719E3931BDCCF4600E251B3 /* BounceTap-soundtrack@75bpm.wav */,
+				0719E3941BDCCF4600E251B3 /* BounceTap-soundtrack@80bpm.wav */,
+				0719E3951BDCCF4600E251B3 /* BounceTap-soundtrack@85bpm.wav */,
+				0719E3961BDCCF4600E251B3 /* BounceTap-soundtrack@90bpm.wav */,
+				0719E3971BDCCF4600E251B3 /* BounceTap-soundtrack@95bpm.wav */,
+			);
+			path = audio;
+			sourceTree = "<group>";
+		};
 		5B12100D197483EE004C1E1D /* res */ = {
 			isa = PBXGroup;
 			children = (
@@ -442,6 +482,7 @@
 			isa = PBXGroup;
 			children = (
 				7A40362019DDEF0D007B6E8F /* Platforms */,
+				0719E38C1BDCCF4600E251B3 /* audio */,
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
 				0719E36C1BDCB4EA00E251B3 /* GameCenterInteractor.swift */,
 				0719E3521BDB4F2100E251B3 /* Circle.swift */,
@@ -735,13 +776,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0719E3981BDCCF4600E251B3 /* beep-ping.wav in Resources */,
+				0719E39C1BDCCF4600E251B3 /* BounceTap-soundtrack@115bpm.wav in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
+				0719E3A11BDCCF4600E251B3 /* BounceTap-soundtrack@90bpm.wav in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
+				0719E39E1BDCCF4600E251B3 /* BounceTap-soundtrack@75bpm.wav in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
+				0719E3A01BDCCF4600E251B3 /* BounceTap-soundtrack@85bpm.wav in Resources */,
+				0719E39A1BDCCF4600E251B3 /* BounceTap-soundtrack@105bpm.wav in Resources */,
+				0719E39B1BDCCF4600E251B3 /* BounceTap-soundtrack@110bpm.wav in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
@@ -749,6 +797,10 @@
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
+				0719E39F1BDCCF4600E251B3 /* BounceTap-soundtrack@80bpm.wav in Resources */,
+				0719E3991BDCCF4600E251B3 /* BounceTap-soundtrack@100bpm.wav in Resources */,
+				0719E3A21BDCCF4600E251B3 /* BounceTap-soundtrack@95bpm.wav in Resources */,
+				0719E39D1BDCCF4600E251B3 /* BounceTap-soundtrack@120bpm.wav in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
