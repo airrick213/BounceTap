@@ -46,7 +46,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         gamePhysicsNode.collisionDelegate = self
         
         OALSimpleAudio.sharedInstance().preloadEffect("beep-ping.wav")
-        OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack.wav", loop: true)
+        OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack@75bpm.wav", loop: true)
         
         startCircleDefaultVelocity()
     }
