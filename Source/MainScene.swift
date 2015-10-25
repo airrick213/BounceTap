@@ -20,10 +20,12 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     weak var highScoreLabel: CCLabelTTF!
     weak var newHighScoreLabel: CCLabelTTF!
     weak var ring: CCSprite!
+    weak var volumeButton: CCButton!
     
     var gameState: GameState = .Title
     var gameMode: GameMode = .Normal
     var currentColor: CCColor = CCColor(red: 0, green: 0, blue: 1)
+    var volume: Float = 1.0
     
     var timeLeft: Float = 5 {
         didSet {
@@ -46,7 +48,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         gamePhysicsNode.collisionDelegate = self
         
         OALSimpleAudio.sharedInstance().preloadEffect("beep-ping.wav")
-        OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack@75bpm.wav", loop: true)
+        OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack@75bpm.wav", volume: volume, pan: 0, loop: true)
         
         startCircleDefaultVelocity()
     }
@@ -74,6 +76,8 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             circle.position.y = 0.5
             
             startCircleDefaultVelocity()
+            
+            OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack@75bpm.wav", volume: volume, pan: 0, loop: true)
         }
         
         gameState = .Ready
@@ -95,6 +99,19 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         
         circle.physicsBody.velocity.x = CGFloat(arc4random_uniform(UInt32(circle.totalVelocity)))
         circle.physicsBody.velocity.y = circle.findComponentVelocity(circle.physicsBody.velocity.x)
+    }
+    
+    func changeVolume() {
+        if volumeButton.selected != true {
+            volumeButton.selected = true
+            volume = 0
+            OALSimpleAudio.sharedInstance().stopEverything()
+        }
+        else {
+            volumeButton.selected = false
+            volume = 1
+            OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack@\((Int(circle.totalVelocity) - 150) / 10 + 75)bpm.wav", volume: volume, pan: 0, loop: true)
+        }
     }
     
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, circle: CCNode!, verticalWall: CCNode!) -> Bool {
@@ -133,7 +150,8 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             changeBackgroundColor()
             
             self.animationManager.runAnimationsForSequenceNamed("Spin")
-            OALSimpleAudio.sharedInstance().playEffect("audio/beep-ping.wav", volume: 1.0, pitch: Float(circle.totalVelocity / 500), pan: 0, loop: false)
+            OALSimpleAudio.sharedInstance().playEffect("audio/beep-ping.wav", volume: volume, pitch: Float(circle.totalVelocity / 500), pan: 0, loop: false)
+            OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack@\((Int(circle.totalVelocity) - 150) / 10 + 75)bpm.wav", volume: volume, pan: 0, loop: true)
             
             if gameMode == .TimeAttack {
                 timeLeft++
@@ -158,7 +176,6 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     func triggerGameOver() {
         gameState = .GameOver
         
-        circle.totalVelocity = 0
         circle.physicsBody.velocity.x = 0
         circle.physicsBody.velocity.y = 0
         

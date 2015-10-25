@@ -10,11 +10,7 @@ import Foundation
 
 class Circle: CCSprite {
     
-    var totalVelocity: CGFloat = 0 {
-        didSet {
-            OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack@\((Int(totalVelocity) - 150) / 10 + 75)bpm.wav", loop: true)
-        }
-    }
+    var totalVelocity: CGFloat = 0
     
     let kRadius: CGFloat = 60
     
