@@ -4,6 +4,10 @@ enum GameState {
     case Title, Ready, Playing, GameOver
 }
 
+enum GameMode {
+    case Normal, TimeAttack
+}
+
 class MainScene: CCNode, CCPhysicsCollisionDelegate{
     
     weak var background: CCNodeColor!
@@ -18,6 +22,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
     weak var ring: CCSprite!
     
     var gameState: GameState = .Title
+    var gameMode: GameMode = .Normal
     
     var score: Int = 0 {
         didSet {
@@ -33,8 +38,20 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
     
     func ready() {
         gameState = .Ready
+        gameMode = .Normal
         
-        self.animationManager.runAnimationsForSequenceNamed("Ready/Playing")
+        resetSettings()
+    }
+    
+    func timeAttackReady() {
+        gameState = .Ready
+        gameMode = .TimeAttack
+        
+        resetSettings()
+    }
+    
+    func resetSettings() {
+        self.animationManager.runAnimationsForSequenceNamed("Ready")
         
         score = 0
         newHighScoreLabel.visible = false
@@ -50,6 +67,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
         
         circle.physicsBody.velocity.x = CGFloat(arc4random_uniform(UInt32(circle.totalVelocity)))
         circle.physicsBody.velocity.y = circle.findComponentVelocity(circle.physicsBody.velocity.x)
+ 
     }
     
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, circle: CCNode!, verticalWall: CCNode!) -> Bool {
@@ -75,7 +93,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
         else if gameState == .Ready {
             gameState = .Playing
             
-            self.animationManager.runAnimationsForSequenceNamed("Ready/Playing")
+            self.animationManager.runAnimationsForSequenceNamed("Playing")
         }
         
         if circle.tapped(touch.locationInWorld()) {
