@@ -45,6 +45,8 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         
         gamePhysicsNode.collisionDelegate = self
         
+        OALSimpleAudio.sharedInstance().preloadEffect("audio/beep-ping.wav")
+        
         startCircleDefaultVelocity()
     }
     
@@ -130,6 +132,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             changeBackgroundColor()
             
             self.animationManager.runAnimationsForSequenceNamed("Spin")
+            OALSimpleAudio.sharedInstance().playEffect("audio/beep-ping.wav", volume: 1.0, pitch: Float(circle.totalVelocity / 500), pan: 0, loop: false)
             
             if gameMode == .TimeAttack {
                 timeLeft++
