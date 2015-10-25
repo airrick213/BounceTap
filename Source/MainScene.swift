@@ -26,6 +26,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     var gameMode: GameMode = .Normal
     var currentColor: CCColor = CCColor(red: 0, green: 0, blue: 1)
     var volume: Float = 1.0
+    var timeIntoTrack: CCTime = 0
     
     var timeLeft: Float = 5 {
         didSet {
@@ -78,6 +79,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             startCircleDefaultVelocity()
             
             OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack@75bpm.wav", volume: volume, pan: 0, loop: true)
+            timeIntoTrack = 0
         }
         
         gameState = .Ready
@@ -110,7 +112,9 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         else {
             volumeButton.selected = false
             volume = 1
+            
             OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack@\((Int(circle.totalVelocity) - 150) / 10 + 75)bpm.wav", volume: volume, pan: 0, loop: true)
+            timeIntoTrack = 0
         }
     }
     
@@ -151,7 +155,14 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             
             self.animationManager.runAnimationsForSequenceNamed("Spin")
             OALSimpleAudio.sharedInstance().playEffect("audio/beep-ping.wav", volume: volume, pitch: Float(circle.totalVelocity / 500), pan: 0, loop: false)
-            OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack@\((Int(circle.totalVelocity) - 150) / 10 + 75)bpm.wav", volume: volume, pan: 0, loop: true)
+            
+            let newBpm: Double = Double((circle.totalVelocity - 150) / 10 + 75)
+            let oldBpm = newBpm - 5
+            let beatsIntoTrack = (Double(timeIntoTrack) / 60 * oldBpm) % 32.0 //32 beats total
+            timeIntoTrack = beatsIntoTrack / newBpm * 60
+            
+            OALSimpleAudio.sharedInstance().preloadBg("BounceTap-soundtrack@\(Int(newBpm))bpm.wav", seekTime: Double(timeIntoTrack))
+            OALSimpleAudio.sharedInstance().playBgWithLoop(true)
             
             if gameMode == .TimeAttack {
                 timeLeft++
@@ -283,6 +294,8 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
                 triggerGameOver()
             }
         }
+        
+        timeIntoTrack += delta
     }
     
     //MARK: Game Center
