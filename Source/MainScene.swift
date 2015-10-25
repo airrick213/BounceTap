@@ -11,7 +11,6 @@ enum GameMode {
 class MainScene: CCNode, CCPhysicsCollisionDelegate{
     
     weak var background: CCNodeColor!
-    weak var startButton: CCButton!
     weak var scoreLabel: CCLabelTTF!
     weak var circle: Circle!
     weak var tapTheCircle: CCLabelTTF!
@@ -23,6 +22,14 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
     
     var gameState: GameState = .Title
     var gameMode: GameMode = .Normal
+    var currentColor: CCColor = CCColor(red: 0, green: 0, blue: 1)
+    
+    var timeLeft: Float = 5 {
+        didSet {
+            timeLeft = max(min(timeLeft, 5), 0)
+            background.opacity = CGFloat(timeLeft / 5)
+        }
+    }
     
     var score: Int = 0 {
         didSet {
@@ -37,26 +44,28 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
     }
     
     func ready() {
-        gameState = .Ready
         gameMode = .Normal
         
         resetSettings()
     }
     
     func timeAttackReady() {
-        gameState = .Ready
         gameMode = .TimeAttack
         
         resetSettings()
     }
     
     func resetSettings() {
+        gameState = .Ready
         self.animationManager.runAnimationsForSequenceNamed("Ready")
         
         score = 0
+        timeLeft = 10
         newHighScoreLabel.visible = false
         
-        transitionBackgroundColor(duration: 0.2, red: 0, green: 0, blue: 1)
+        background.opacity = 1
+        currentColor = CCColor(red: 0, green: 0, blue: 1)
+        transitionBackgroundColorToCurrentColor(duration: 0.2)
         
         circle.physicsBody.affectedByGravity = false
         
@@ -104,6 +113,10 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
             changeBackgroundColor()
             
             self.animationManager.runAnimationsForSequenceNamed("Spin")
+            
+            if gameMode == .TimeAttack {
+                timeLeft++
+            }
         }
         else {
             triggerGameOver()
@@ -150,19 +163,27 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
     }
     
     func changeBackgroundColor() {
-        let blue = background.color.blue
-        let green = background.color.green
-        let red = background.color.red
+        let blue = currentColor.blue
+        let green = currentColor.green
+        let red = currentColor.red
         
         let transitionTime: Double = 0.5
+        
+        if gameMode == .TimeAttack {
+            background.opacity = 1
+        }
         
         if blue == 1 {
             if green < 1 {
                 if red == 0 {
-                    transitionBackgroundColor(duration: transitionTime, red: red, green: green + 0.25, blue: blue)
+                    currentColor = CCColor(red: red, green: green + 0.25, blue: blue)
+                    
+                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
                 }
                 else {
-                    transitionBackgroundColor(duration: transitionTime, red: red - 0.25, green: green, blue: blue)
+                    currentColor = CCColor(red: red - 0.25, green: green, blue: blue)
+                    
+                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
                 }
             }
         }
@@ -170,10 +191,14 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
         if green == 1 {
             if red < 1 {
                 if blue == 0 {
-                    transitionBackgroundColor(duration: transitionTime, red: red + 0.25, green: green, blue: blue)
+                    currentColor = CCColor(red: red + 0.25, green: green, blue: blue)
+                    
+                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
                 }
                 else {
-                    transitionBackgroundColor(duration: transitionTime, red: red, green: green, blue: blue - 0.25)
+                    currentColor = CCColor(red: red, green: green, blue: blue - 0.25)
+                    
+                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
                 }
             }
         }
@@ -181,17 +206,31 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
         if red == 1 {
             if blue < 1 {
                 if green == 0 {
-                    transitionBackgroundColor(duration: transitionTime, red: red, green: green, blue: blue + 0.25)
+                    currentColor = CCColor(red: red, green: green, blue: blue + 0.25)
+                    
+                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
                 }
                 else {
-                    transitionBackgroundColor(duration: transitionTime, red: red, green: green - 0.25, blue: blue)
+                    currentColor = CCColor(red: red, green: green - 0.25, blue: blue)
+                    
+                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
                 }
             }
         }
     }
     
-    func transitionBackgroundColor(duration duration: Double, red: Float, green: Float, blue: Float) {
-        background.runAction(CCActionTintTo(duration: duration, color: CCColor(red: red, green: green, blue: blue)))
+    func transitionBackgroundColorToCurrentColor(duration duration: Double) {
+        background.runAction(CCActionTintTo(duration: duration, color: currentColor))
+    }
+    
+    override func update(delta: CCTime) {
+        if gameMode == .TimeAttack && gameState == .Playing {
+            timeLeft -= Float(delta)
+            
+            if timeLeft == 0 {
+                triggerGameOver()
+            }
+        }
     }
     
 }
