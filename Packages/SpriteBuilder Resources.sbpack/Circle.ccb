@@ -137,7 +137,7 @@
 				<key>value</key>
 				<array>
 					<string></string>
-					<string>assets/circle.png</string>
+					<string>assets/star-circle.png</string>
 				</array>
 			</dict>
 			<dict>
@@ -173,8 +173,6 @@
 				<array/>
 			</dict>
 		</array>
-		<key>selected</key>
-		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>

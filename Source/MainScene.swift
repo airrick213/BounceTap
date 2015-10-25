@@ -34,7 +34,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
     func ready() {
         gameState = .Ready
         
-        self.animationManager.runAnimationsForSequenceNamed("Ready")
+        self.animationManager.runAnimationsForSequenceNamed("Ready/Playing")
         
         score = 0
         newHighScoreLabel.visible = false
@@ -75,7 +75,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
         else if gameState == .Ready {
             gameState = .Playing
             
-            self.animationManager.runAnimationsForSequenceNamed("Playing")
+            self.animationManager.runAnimationsForSequenceNamed("Ready/Playing")
         }
         
         if circle.tapped(touch.locationInWorld()) {
@@ -84,6 +84,8 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
             circle.bounceTap()
             animateRing()
             changeBackgroundColor()
+            
+            self.animationManager.runAnimationsForSequenceNamed("Spin")
         }
         else {
             triggerGameOver()

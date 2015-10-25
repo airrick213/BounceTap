@@ -173,8 +173,6 @@
 							<integer>1</integer>
 						</dict>
 					</dict>
-					<key>1</key>
-					<dict/>
 					<key>3</key>
 					<dict>
 						<key>visible</key>
@@ -536,8 +534,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -572,8 +568,6 @@
 							<integer>1</integer>
 						</dict>
 					</dict>
-					<key>1</key>
-					<dict/>
 				</dict>
 				<key>baseClass</key>
 				<string>CCLabelTTF</string>
@@ -794,7 +788,7 @@
 				<integer>9</integer>
 				<key>animatedProperties</key>
 				<dict>
-					<key>1</key>
+					<key>2</key>
 					<dict>
 						<key>visible</key>
 						<dict>
@@ -822,7 +816,7 @@
 							<integer>1</integer>
 						</dict>
 					</dict>
-					<key>2</key>
+					<key>4</key>
 					<dict>
 						<key>visible</key>
 						<dict>
@@ -1064,6 +1058,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>seqExpanded</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1183,6 +1179,95 @@
 					<dict>
 						<key>UUID</key>
 						<integer>7</integer>
+						<key>animatedProperties</key>
+						<dict>
+							<key>2</key>
+							<dict>
+								<key>rotation</key>
+								<dict>
+									<key>keyframes</key>
+									<array>
+										<dict>
+											<key>easing</key>
+											<dict>
+												<key>type</key>
+												<integer>1</integer>
+											</dict>
+											<key>name</key>
+											<string>rotation</string>
+											<key>time</key>
+											<real>0.0</real>
+											<key>type</key>
+											<integer>2</integer>
+											<key>value</key>
+											<real>0.0</real>
+										</dict>
+										<dict>
+											<key>easing</key>
+											<dict>
+												<key>type</key>
+												<integer>1</integer>
+											</dict>
+											<key>name</key>
+											<string>rotation</string>
+											<key>time</key>
+											<real>1.1666666269302368</real>
+											<key>type</key>
+											<integer>2</integer>
+											<key>value</key>
+											<real>360</real>
+										</dict>
+									</array>
+									<key>name</key>
+									<string>rotation</string>
+									<key>type</key>
+									<integer>2</integer>
+								</dict>
+							</dict>
+							<key>4</key>
+							<dict>
+								<key>rotation</key>
+								<dict>
+									<key>keyframes</key>
+									<array>
+										<dict>
+											<key>easing</key>
+											<dict>
+												<key>type</key>
+												<integer>1</integer>
+											</dict>
+											<key>name</key>
+											<string>rotation</string>
+											<key>time</key>
+											<real>0.0</real>
+											<key>type</key>
+											<integer>2</integer>
+											<key>value</key>
+											<real>0.0</real>
+										</dict>
+										<dict>
+											<key>easing</key>
+											<dict>
+												<key>type</key>
+												<integer>1</integer>
+											</dict>
+											<key>name</key>
+											<string>rotation</string>
+											<key>time</key>
+											<real>0.30000001192092896</real>
+											<key>type</key>
+											<integer>2</integer>
+											<key>value</key>
+											<real>360</real>
+										</dict>
+									</array>
+									<key>name</key>
+									<string>rotation</string>
+									<key>type</key>
+									<integer>2</integer>
+								</dict>
+							</dict>
+						</dict>
 						<key>baseClass</key>
 						<string>CCBFile</string>
 						<key>children</key>
@@ -1233,6 +1318,16 @@
 								</array>
 							</dict>
 							<dict>
+								<key>baseValue</key>
+								<real>0.0</real>
+								<key>name</key>
+								<string>rotation</string>
+								<key>type</key>
+								<string>Degrees</string>
+								<key>value</key>
+								<real>360</real>
+							</dict>
+							<dict>
 								<key>name</key>
 								<string>ccbFile</string>
 								<key>type</key>
@@ -1241,6 +1336,10 @@
 								<string>Circle.ccb</string>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
+						<key>seqExpanded</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -1904,67 +2003,6 @@
 			<dict>
 				<key>UUID</key>
 				<integer>10</integer>
-				<key>animatedProperties</key>
-				<dict>
-					<key>1</key>
-					<dict>
-						<key>opacity</key>
-						<dict>
-							<key>keyframes</key>
-							<array>
-								<dict>
-									<key>easing</key>
-									<dict>
-										<key>type</key>
-										<integer>1</integer>
-									</dict>
-									<key>name</key>
-									<string>opacity</string>
-									<key>time</key>
-									<real>0.0</real>
-									<key>type</key>
-									<integer>10</integer>
-									<key>value</key>
-									<real>0.0</real>
-								</dict>
-								<dict>
-									<key>easing</key>
-									<dict>
-										<key>type</key>
-										<integer>1</integer>
-									</dict>
-									<key>name</key>
-									<string>opacity</string>
-									<key>time</key>
-									<real>0.73333334922790527</real>
-									<key>type</key>
-									<integer>10</integer>
-									<key>value</key>
-									<real>1</real>
-								</dict>
-								<dict>
-									<key>easing</key>
-									<dict>
-										<key>type</key>
-										<integer>1</integer>
-									</dict>
-									<key>name</key>
-									<string>opacity</string>
-									<key>time</key>
-									<real>1.5</real>
-									<key>type</key>
-									<integer>10</integer>
-									<key>value</key>
-									<real>0.0</real>
-								</dict>
-							</array>
-							<key>name</key>
-							<string>opacity</string>
-							<key>type</key>
-							<integer>10</integer>
-						</dict>
-					</dict>
-				</dict>
 				<key>baseClass</key>
 				<string>CCLabelTTF</string>
 				<key>children</key>
@@ -2064,8 +2102,6 @@
 						<false/>
 					</dict>
 					<dict>
-						<key>baseValue</key>
-						<real>0.0</real>
 						<key>name</key>
 						<string>opacity</string>
 						<key>type</key>
@@ -3071,51 +3107,15 @@
 				<integer>12</integer>
 			</dict>
 			<key>chainedSequenceId</key>
-			<integer>1</integer>
+			<integer>2</integer>
 			<key>length</key>
-			<real>1.5</real>
+			<real>1.1666666269302368</real>
 			<key>name</key>
-			<string>Ready</string>
+			<string>Ready/Playing</string>
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
-			<key>resolution</key>
-			<real>30</real>
-			<key>scale</key>
-			<real>128</real>
-			<key>sequenceId</key>
-			<integer>1</integer>
-			<key>soundChannel</key>
-			<dict>
-				<key>isExpanded</key>
-				<false/>
-				<key>keyframes</key>
-				<array/>
-				<key>type</key>
-				<integer>11</integer>
-			</dict>
-		</dict>
-		<dict>
-			<key>autoPlay</key>
-			<false/>
-			<key>callbackChannel</key>
-			<dict>
-				<key>keyframes</key>
-				<array/>
-				<key>type</key>
-				<integer>12</integer>
-			</dict>
-			<key>chainedSequenceId</key>
-			<integer>-1</integer>
-			<key>length</key>
-			<real>10</real>
-			<key>name</key>
-			<string>Playing</string>
-			<key>offset</key>
-			<real>0.0</real>
-			<key>position</key>
-			<real>0.0</real>
+			<real>1.1666666269302368</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
@@ -3158,6 +3158,42 @@
 			<real>128</real>
 			<key>sequenceId</key>
 			<integer>3</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>isExpanded</key>
+				<false/>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>autoPlay</key>
+			<false/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>12</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>2</integer>
+			<key>length</key>
+			<real>0.30000001192092896</real>
+			<key>name</key>
+			<string>Spin</string>
+			<key>offset</key>
+			<real>0.0</real>
+			<key>position</key>
+			<real>0.0</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>128</real>
+			<key>sequenceId</key>
+			<integer>4</integer>
 			<key>soundChannel</key>
 			<dict>
 				<key>isExpanded</key>
