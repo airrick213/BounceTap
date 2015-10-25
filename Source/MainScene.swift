@@ -41,6 +41,8 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
         userInteractionEnabled = true
         
         gamePhysicsNode.collisionDelegate = self
+        
+        startCircleDefaultVelocity()
     }
     
     func ready() {
@@ -56,6 +58,13 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
     }
     
     func resetSettings() {
+        if gameState != .Title {
+            circle.position.x = 0.5
+            circle.position.y = 0.5
+            
+            startCircleDefaultVelocity()
+        }
+        
         gameState = .Ready
         self.animationManager.runAnimationsForSequenceNamed("Ready")
         
@@ -68,15 +77,13 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
         transitionBackgroundColorToCurrentColor(duration: 0.2)
         
         circle.physicsBody.affectedByGravity = false
-        
-        circle.position.x = 0.5
-        circle.position.y = 0.5
-        
+    }
+    
+    func startCircleDefaultVelocity() {
         circle.totalVelocity = 150
         
         circle.physicsBody.velocity.x = CGFloat(arc4random_uniform(UInt32(circle.totalVelocity)))
         circle.physicsBody.velocity.y = circle.findComponentVelocity(circle.physicsBody.velocity.x)
- 
     }
     
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, circle: CCNode!, verticalWall: CCNode!) -> Bool {
