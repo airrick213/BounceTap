@@ -31,9 +31,9 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
         }
     }
     
-    var score: Int = 0 {
+    var score: Float = 0 {
         didSet {
-            scoreLabel.string = "\(score)"
+            scoreLabel.string = "\(Int(score))"
         }
     }
     
@@ -106,7 +106,9 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
         }
         
         if circle.tapped(touch.locationInWorld()) {
-            score++
+            if gameMode == .Normal {
+                score++
+            }
             
             circle.bounceTap()
             animateRing()
@@ -147,16 +149,28 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
         
         self.animationManager.runAnimationsForSequenceNamed("GameOver")
         
-        gameOverScoreLabel.string = "Score: \(score)"
+        gameOverScoreLabel.string = "Score: \(Int(score))"
         
-        let highScore = NSUserDefaults().integerForKey("high_score")
+        var highScore: Int
+        if gameMode == .Normal {
+            highScore = NSUserDefaults().integerForKey("high_score")
+        }
+        else {
+            highScore = NSUserDefaults().integerForKey("time_attack_high_score")
+        }
         
-        if score <= highScore {
+        if Int(score) <= highScore {
             highScoreLabel.string = "High Score: \(highScore)"
         }
         else {
-            highScoreLabel.string = "High Score: \(score)"
-            NSUserDefaults().setInteger(score, forKey: "high_score")
+            highScoreLabel.string = "High Score: \(Int(score))"
+            
+            if gameMode == .Normal {
+                NSUserDefaults().setInteger(Int(score), forKey: "high_score")
+            }
+            else {
+                NSUserDefaults().setInteger(Int(score), forKey: "time_attack_high_score")
+            }
             
             newHighScoreLabel.visible = true
         }
@@ -226,6 +240,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
     override func update(delta: CCTime) {
         if gameMode == .TimeAttack && gameState == .Playing {
             timeLeft -= Float(delta)
+            score += Float(delta)
             
             if timeLeft == 0 {
                 triggerGameOver()
