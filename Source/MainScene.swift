@@ -1,4 +1,5 @@
 import Foundation
+import GameKit
 
 enum GameState {
     case Title, Ready, Playing, GameOver
@@ -8,7 +9,7 @@ enum GameMode {
     case Normal, TimeAttack
 }
 
-class MainScene: CCNode, CCPhysicsCollisionDelegate{
+class MainScene: CCNode, CCPhysicsCollisionDelegate {
     
     weak var background: CCNodeColor!
     weak var scoreLabel: CCLabelTTF!
@@ -40,9 +41,16 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
     func didLoadFromCCB() {
         userInteractionEnabled = true
         
+        setUpGameCenter()
+        
         gamePhysicsNode.collisionDelegate = self
         
         startCircleDefaultVelocity()
+    }
+    
+    func setUpGameCenter() {
+        let gameCenterInteractor = GameCenterInteractor.sharedInstance
+        gameCenterInteractor.authenticationCheck()
     }
     
     func ready() {
@@ -178,6 +186,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
             else {
                 NSUserDefaults().setInteger(Int(score), forKey: "time_attack_high_score")
             }
+            reportHighScoreToGameCenter()
             
             newHighScoreLabel.visible = true
         }
@@ -253,6 +262,45 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate{
                 triggerGameOver()
             }
         }
+    }
+    
+    //MARK: Game Center
+    
+    func leaderboard() {
+        let viewController = CCDirector.sharedDirector().parentViewController!
+        let gameCenterViewController = GKGameCenterViewController()
+        gameCenterViewController.gameCenterDelegate = self
+        
+        viewController.presentViewController(gameCenterViewController, animated: true, completion: nil)
+    }
+    
+    func reportHighScoreToGameCenter() {
+        var identifier: String
+        if gameMode == .Normal {
+            identifier = "BounceTapNormalModeLeaderboard"
+        }
+        else {
+            identifier = "BounceTapTimeAttackLeaderboard"
+        }
+        
+        let scoreReporter = GKScore(leaderboardIdentifier: identifier)
+        scoreReporter.value = Int64(score)
+        
+        let scoreArray: [GKScore] = [scoreReporter]
+        
+        GKScore.reportScores(scoreArray, withCompletionHandler: {(error: NSError?) -> Void in
+            if error != nil {
+                print("Game Center: Score Submission Error")
+            }
+        })
+    }
+    
+}
+
+extension MainScene: GKGameCenterControllerDelegate {
+    
+    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
 }

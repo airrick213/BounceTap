@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0719E3531BDB4F2100E251B3 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0719E3521BDB4F2100E251B3 /* Circle.swift */; settings = {ASSET_TAGS = (); }; };
+		0719E36B1BDCAC6300E251B3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0719E36A1BDCAC6300E251B3 /* GameKit.framework */; };
+		0719E36D1BDCB4EA00E251B3 /* GameCenterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0719E36C1BDCB4EA00E251B3 /* GameCenterInteractor.swift */; settings = {ASSET_TAGS = (); }; };
 		5B121030197484FA004C1E1D /* BounceTapActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* BounceTapActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A046D7519E84C36004C4763 /* MainScene.swift */; };
@@ -150,6 +152,8 @@
 
 /* Begin PBXFileReference section */
 		0719E3521BDB4F2100E251B3 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
+		0719E36A1BDCAC6300E251B3 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		0719E36C1BDCB4EA00E251B3 /* GameCenterInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterInteractor.swift; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121011197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -256,6 +260,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0719E36B1BDCAC6300E251B3 /* GameKit.framework in Frameworks */,
 				7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */,
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
 				B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */,
@@ -438,6 +443,7 @@
 			children = (
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
+				0719E36C1BDCB4EA00E251B3 /* GameCenterInteractor.swift */,
 				0719E3521BDB4F2100E251B3 /* Circle.swift */,
 				D352B48019EC608A00829775 /* MetalShaders */,
 			);
@@ -490,6 +496,7 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0719E36A1BDCAC6300E251B3 /* GameKit.framework */,
 				BC5399D31A44DCC90063F482 /* AndroidKit.framework */,
 				BC5399D41A44DCC90063F482 /* CoreJava.framework */,
 				BC5399D51A44DCC90063F482 /* GLActivityKit.framework */,
@@ -820,6 +827,7 @@
 				0719E3531BDB4F2100E251B3 /* Circle.swift in Sources */,
 				7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
+				0719E36D1BDCB4EA00E251B3 /* GameCenterInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
