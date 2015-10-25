@@ -158,7 +158,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             
             let newBpm: Double = Double((circle.totalVelocity - 150) / 10 + 75)
             let oldBpm = newBpm - 5
-            let beatsIntoTrack = (Double(timeIntoTrack) / 60 * oldBpm) % 32.0 //32 beats total
+            let beatsIntoTrack = (Double(timeIntoTrack) / 60 * oldBpm) % 32.0 //64 beats total
             timeIntoTrack = beatsIntoTrack / newBpm * 60
             
             OALSimpleAudio.sharedInstance().preloadBg("BounceTap-soundtrack@\(Int(newBpm))bpm.wav", seekTime: Double(timeIntoTrack))
