@@ -154,7 +154,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             changeBackgroundColor()
             
             self.animationManager.runAnimationsForSequenceNamed("Spin")
-            OALSimpleAudio.sharedInstance().playEffect("audio/beep-ping.wav", volume: volume, pitch: Float(circle.totalVelocity / 500), pan: 0, loop: false)
+            OALSimpleAudio.sharedInstance().playEffect("beep-ping.wav", volume: volume, pitch: Float(circle.totalVelocity / 500), pan: 0, loop: false)
             
             let newBpm: Double = Double((circle.totalVelocity - 150) / 10 + 75)
             let oldBpm = newBpm - 5
