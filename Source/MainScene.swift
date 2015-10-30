@@ -1,5 +1,6 @@
 import Foundation
 import GameKit
+import AudioToolbox
 
 enum GameState {
     case Title, Ready, Playing, GameOver
@@ -73,6 +74,8 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         gamePhysicsNode.collisionDelegate = self
         
         OALSimpleAudio.sharedInstance().preloadEffect("beep-ping.wav")
+//        OALSimpleAudio.sharedInstance().preloadEffect("glass-ping.wav")
+        
         OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack@75bpm.wav", volume: volume, pan: 0, loop: true)
         
         startCircleDefaultVelocity()
@@ -207,6 +210,9 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
                 firstPlayerScore++
                 twoPlayerRoundOver()
             }
+            else {
+                circle.physicsBody.velocity.y = -circle.physicsBody.velocity.y
+            }
         }
         else {
             circle.physicsBody.velocity.y = -circle.physicsBody.velocity.y
@@ -298,6 +304,9 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         
         NSThread.sleepForTimeInterval(0.5)
        
+//        OALSimpleAudio.sharedInstance().playEffect("glass-ping.wav", volume: volume / 2, pitch: 0.5, pan: 0, loop: false)
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        
         circle.physicsBody.affectedByGravity = true
         
         scoreLabel.visible = false

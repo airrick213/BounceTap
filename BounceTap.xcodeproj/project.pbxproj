@@ -21,6 +21,7 @@
 		0719E3B71BDCE64500E251B3 /* BounceTap-soundtrack@85bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E3AC1BDCE64500E251B3 /* BounceTap-soundtrack@85bpm.wav */; settings = {ASSET_TAGS = (); }; };
 		0719E3B81BDCE64500E251B3 /* BounceTap-soundtrack@90bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E3AD1BDCE64500E251B3 /* BounceTap-soundtrack@90bpm.wav */; settings = {ASSET_TAGS = (); }; };
 		0719E3B91BDCE64500E251B3 /* BounceTap-soundtrack@95bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E3AE1BDCE64500E251B3 /* BounceTap-soundtrack@95bpm.wav */; settings = {ASSET_TAGS = (); }; };
+		07F429E71BE30D8F0095E3EA /* glass-ping.wav in Resources */ = {isa = PBXBuildFile; fileRef = 07F429E61BE30D8F0095E3EA /* glass-ping.wav */; settings = {ASSET_TAGS = (); }; };
 		5B121030197484FA004C1E1D /* BounceTapActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* BounceTapActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A046D7519E84C36004C4763 /* MainScene.swift */; };
@@ -176,6 +177,7 @@
 		0719E3AC1BDCE64500E251B3 /* BounceTap-soundtrack@85bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@85bpm.wav"; sourceTree = "<group>"; };
 		0719E3AD1BDCE64500E251B3 /* BounceTap-soundtrack@90bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@90bpm.wav"; sourceTree = "<group>"; };
 		0719E3AE1BDCE64500E251B3 /* BounceTap-soundtrack@95bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@95bpm.wav"; sourceTree = "<group>"; };
+		07F429E61BE30D8F0095E3EA /* glass-ping.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "glass-ping.wav"; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121011197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -282,13 +284,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B77F1B3817B978D7009739AE /* AudioToolbox.framework in Frameworks */,
 				0719E36B1BDCAC6300E251B3 /* GameKit.framework in Frameworks */,
 				7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */,
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
 				B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */,
 				B77F1B3417B978D7009739AE /* OpenGLES.framework in Frameworks */,
 				B77F1B3617B978D7009739AE /* OpenAL.framework in Frameworks */,
-				B77F1B3817B978D7009739AE /* AudioToolbox.framework in Frameworks */,
 				B77F1B3A17B978D7009739AE /* AVFoundation.framework in Frameworks */,
 				B77F1B3C17B978D7009739AE /* UIKit.framework in Frameworks */,
 				B77F1B3E17B978D7009739AE /* Foundation.framework in Frameworks */,
@@ -303,6 +305,7 @@
 		0719E3A31BDCE64500E251B3 /* audio */ = {
 			isa = PBXGroup;
 			children = (
+				07F429E61BE30D8F0095E3EA /* glass-ping.wav */,
 				0719E3A41BDCE64500E251B3 /* beep-ping.wav */,
 				0719E3A51BDCE64500E251B3 /* BounceTap-soundtrack@100bpm.wav */,
 				0719E3A61BDCE64500E251B3 /* BounceTap-soundtrack@105bpm.wav */,
@@ -799,6 +802,7 @@
 				B7378977180762440076A88C /* Default.png in Resources */,
 				0719E3B61BDCE64500E251B3 /* BounceTap-soundtrack@80bpm.wav in Resources */,
 				0719E3B01BDCE64500E251B3 /* BounceTap-soundtrack@100bpm.wav in Resources */,
+				07F429E71BE30D8F0095E3EA /* glass-ping.wav in Resources */,
 				0719E3B91BDCE64500E251B3 /* BounceTap-soundtrack@95bpm.wav in Resources */,
 				0719E3B41BDCE64500E251B3 /* BounceTap-soundtrack@120bpm.wav in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
