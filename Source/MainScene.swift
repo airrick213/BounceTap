@@ -305,7 +305,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         NSThread.sleepForTimeInterval(0.5)
        
 //        OALSimpleAudio.sharedInstance().playEffect("glass-ping.wav", volume: volume / 2, pitch: 0.5, pan: 0, loop: false)
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        AudioServicesPlayAlertSound(UInt32(kSystemSoundID_Vibrate))
         
         circle.physicsBody.affectedByGravity = true
         
