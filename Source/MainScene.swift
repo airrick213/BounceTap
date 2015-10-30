@@ -6,7 +6,7 @@ enum GameState {
 }
 
 enum GameMode {
-    case Normal, TimeAttack
+    case Normal
 }
 
 class MainScene: CCNode, CCPhysicsCollisionDelegate {
@@ -14,7 +14,6 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     weak var background: CCNodeColor!
     weak var scoreLabel: CCLabelTTF!
     weak var circle: Circle!
-    weak var tapTheCircle: CCLabelTTF!
     weak var gamePhysicsNode: CCPhysicsNode!
     weak var gameOverScoreLabel: CCLabelTTF!
     weak var highScoreLabel: CCLabelTTF!
@@ -30,14 +29,14 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     
     var timeLeft: Float = 5 {
         didSet {
-            timeLeft = max(min(timeLeft, 5), 0)
+            timeLeft = max(timeLeft, 0)
             background.opacity = CGFloat(timeLeft / 5)
         }
     }
     
-    var score: Float = 0 {
+    var score: Int = 0 {
         didSet {
-            scoreLabel.string = "\(Int(score))"
+            scoreLabel.string = "\(score)"
         }
     }
     
@@ -61,12 +60,6 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     
     func ready() {
         gameMode = .Normal
-        
-        resetSettings()
-    }
-    
-    func timeAttackReady() {
-        gameMode = .TimeAttack
         
         resetSettings()
     }
@@ -113,8 +106,10 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             volumeButton.selected = false
             volume = 1
             
-            OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack@\((Int(circle.totalVelocity) - 150) / 10 + 75)bpm.wav", volume: volume, pan: 0, loop: true)
-            timeIntoTrack = 0
+            if gameState == .Title {
+                OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack@\((Int(circle.totalVelocity) - 150) / 10 + 75)bpm.wav", volume: volume, pan: 0, loop: true)
+                timeIntoTrack = 0
+            }
         }
     }
     
@@ -128,6 +123,23 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, circle: CCNode!, horizontalWall: CCNode!) -> Bool {
         if gameState != .GameOver {
+            circle.physicsBody.velocity.y = -circle.physicsBody.velocity.y
+        }
+        
+        return true
+    }
+    
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, circle: CCNode!, bottomGoal: CCNode!) -> Bool {
+        if gameState == .GameOver {
+            return true
+        }
+        
+        if gameState == .Playing {
+            if gameMode == .Normal {
+                triggerGameOver()
+            }
+        }
+        else {
             circle.physicsBody.velocity.y = -circle.physicsBody.velocity.y
         }
         
@@ -156,21 +168,23 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             self.animationManager.runAnimationsForSequenceNamed("Spin")
             OALSimpleAudio.sharedInstance().playEffect("beep-ping.wav", volume: volume, pitch: Float(circle.totalVelocity / 500), pan: 0, loop: false)
             
-            let newBpm: Double = Double((circle.totalVelocity - 150) / 10 + 75)
-            let oldBpm = newBpm - 5
-            let beatsIntoTrack = (Double(timeIntoTrack) / 60 * oldBpm) % 32.0 //64 beats total
-            timeIntoTrack = beatsIntoTrack / newBpm * 60
-            
-            OALSimpleAudio.sharedInstance().preloadBg("BounceTap-soundtrack@\(Int(newBpm))bpm.wav", seekTime: Double(timeIntoTrack))
-            OALSimpleAudio.sharedInstance().playBgWithLoop(true)
-            
-            if gameMode == .TimeAttack {
-                timeLeft++
+            if gameMode == .Normal {
+                timeLeft = 5
             }
         }
         else {
             triggerGameOver()
         }
+    }
+    
+    func speedUpTrack() {
+        let newBpm: Double = Double((circle.totalVelocity - 150) / 10 + 75)
+        let oldBpm = newBpm - 5
+        let beatsIntoTrack = (Double(timeIntoTrack) / 60 * oldBpm) % 32.0 //64 beats total
+        timeIntoTrack = beatsIntoTrack / newBpm * 60
+        
+        OALSimpleAudio.sharedInstance().preloadBg("BounceTap-soundtrack@\(Int(newBpm))bpm.wav", seekTime: Double(timeIntoTrack))
+        OALSimpleAudio.sharedInstance().playBgWithLoop(true)
     }
     
     func animateRing() {
@@ -187,6 +201,8 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     func triggerGameOver() {
         gameState = .GameOver
         
+        OALSimpleAudio.sharedInstance().stopEverything()
+        
         circle.physicsBody.velocity.x = 0
         circle.physicsBody.velocity.y = 0
         
@@ -196,28 +212,17 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         
         self.animationManager.runAnimationsForSequenceNamed("GameOver")
         
-        gameOverScoreLabel.string = "Score: \(Int(score))"
+        gameOverScoreLabel.string = "Score: \(score)"
         
-        var highScore: Int
-        if gameMode == .Normal {
-            highScore = NSUserDefaults().integerForKey("high_score")
-        }
-        else {
-            highScore = NSUserDefaults().integerForKey("time_attack_high_score")
-        }
+        let highScore: Int = NSUserDefaults().integerForKey("high_score")
         
-        if Int(score) <= highScore {
+        if score <= highScore {
             highScoreLabel.string = "High Score: \(highScore)"
         }
         else {
-            highScoreLabel.string = "High Score: \(Int(score))"
+            highScoreLabel.string = "High Score: \(score)"
+            NSUserDefaults().setInteger(score, forKey: "high_score")
             
-            if gameMode == .Normal {
-                NSUserDefaults().setInteger(Int(score), forKey: "high_score")
-            }
-            else {
-                NSUserDefaults().setInteger(Int(score), forKey: "time_attack_high_score")
-            }
             reportHighScoreToGameCenter()
             
             newHighScoreLabel.visible = true
@@ -231,7 +236,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         
         let transitionTime: Double = 0.5
         
-        if gameMode == .TimeAttack {
+        if gameMode == .Normal {
             background.opacity = 1
         }
         
@@ -286,16 +291,17 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     }
     
     override func update(delta: CCTime) {
-        if gameMode == .TimeAttack && gameState == .Playing {
-            timeLeft -= Float(delta)
-            score += Float(delta)
+        if gameState == .Playing {
+            timeIntoTrack += delta
             
-            if timeLeft == 0 {
-                triggerGameOver()
+            if gameMode == .Normal {
+                timeLeft -= Float(delta)
+            
+                if timeLeft == 0 {
+                    triggerGameOver()
+                }
             }
         }
-        
-        timeIntoTrack += delta
     }
     
     //MARK: Game Center
@@ -309,15 +315,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     }
     
     func reportHighScoreToGameCenter() {
-        var identifier: String
-        if gameMode == .Normal {
-            identifier = "BounceTapNormalModeLeaderboard"
-        }
-        else {
-            identifier = "BounceTapTimeAttackLeaderboard"
-        }
-        
-        let scoreReporter = GKScore(leaderboardIdentifier: identifier)
+        let scoreReporter = GKScore(leaderboardIdentifier: "BounceTapNormalModeLeaderboard")
         scoreReporter.value = Int64(score)
         
         let scoreArray: [GKScore] = [scoreReporter]
