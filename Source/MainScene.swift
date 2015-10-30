@@ -25,11 +25,12 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     weak var secondPlayerScoreLabel: CCLabelTTF!
     weak var twoPlayerResultLabel: CCLabelTTF!
     weak var topGoal: CCNodeColor!
+    weak var bottomGoal: CCNodeColor!
     weak var topGoalInstructions: CCLabelTTF!
     
     var gameState: GameState = .Title
     var gameMode: GameMode = .Normal
-    var currentColor: CCColor = CCColor(red: 0, green: 0, blue: 1)
+    var currentColorIndex: Int = 0
     var volume: Float = 1.0
     var timeIntoTrack: CCTime = 0
     
@@ -65,6 +66,16 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             }
         }
     }
+    
+    let colorPalette: [CCColor] = [
+        CCColor(red: 155.0 / 255.0, green: 89.0 / 255.0, blue: 182.0 / 255.0), //amethyst
+        CCColor(red: 52.0 / 255.0, green: 152.0 / 255.0, blue: 219.0 / 255.0), //peter river (blue)
+        CCColor(red: 46.0 / 255.0, green: 204.0 / 255.0, blue: 113.0 / 255.0), //emerald
+        CCColor(red: 26.0 / 255.0, green: 188.0 / 255.0, blue: 156.0 / 255.0), //turquoise
+        CCColor(red: 241.0 / 255.0, green: 196.0 / 255.0, blue: 15.0 / 255.0), //sun flower
+        CCColor(red: 243.0 / 255.0, green: 156.0 / 255.0, blue: 18.0 / 255.0), //orange
+        CCColor(red: 231.0 / 255.0, green: 76.0 / 255.0, blue: 60.0 / 255.0)
+    ]
     
     func didLoadFromCCB() {
         userInteractionEnabled = true
@@ -133,8 +144,8 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         topGoalInstructions.visible = (gameMode == .TwoPlayer)
         
         background.opacity = 1
-        currentColor = CCColor(red: 0, green: 0, blue: 1)
-        transitionBackgroundColorToCurrentColor(duration: 0.2)
+        currentColorIndex = 0
+        changeColorScheme()
         
         circle.physicsBody.affectedByGravity = false
     }
@@ -249,7 +260,9 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             
             circle.bounceTap()
             animateRing()
-            changeBackgroundColor()
+            
+            currentColorIndex++
+            changeColorScheme()
             
             self.animationManager.runAnimationsForSequenceNamed("Spin")
             OALSimpleAudio.sharedInstance().playEffect("beep-ping.wav", volume: volume, pitch: Float(circle.totalVelocity / 500), pan: 0, loop: false)
@@ -344,65 +357,68 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         }
     }
     
-    func changeBackgroundColor() {
-        let blue = currentColor.blue
-        let green = currentColor.green
-        let red = currentColor.red
-        
-        let transitionTime: Double = 0.5
-        
-        if gameMode == .Normal {
-            background.opacity = 1
-        }
-        
-        if blue == 1 {
-            if green < 1 {
-                if red == 0 {
-                    currentColor = CCColor(red: red, green: green + 0.25, blue: blue)
-                    
-                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
-                }
-                else {
-                    currentColor = CCColor(red: red - 0.25, green: green, blue: blue)
-                    
-                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
-                }
-            }
-        }
-        
-        if green == 1 {
-            if red < 1 {
-                if blue == 0 {
-                    currentColor = CCColor(red: red + 0.25, green: green, blue: blue)
-                    
-                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
-                }
-                else {
-                    currentColor = CCColor(red: red, green: green, blue: blue - 0.25)
-                    
-                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
-                }
-            }
-        }
-        
-        if red == 1 {
-            if blue < 1 {
-                if green == 0 {
-                    currentColor = CCColor(red: red, green: green, blue: blue + 0.25)
-                    
-                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
-                }
-                else {
-                    currentColor = CCColor(red: red, green: green - 0.25, blue: blue)
-                    
-                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
-                }
-            }
-        }
-    }
+//    func changeBackgroundColor() {
+//        let blue = currentColor.blue
+//        let green = currentColor.green
+//        let red = currentColor.red
+//        
+//        let transitionTime: Double = 0.5
+//        
+//        if gameMode == .Normal {
+//            background.opacity = 1
+//        }
+//        
+//        if blue == 1 {
+//            if green < 1 {
+//                if red == 0 {
+//                    currentColor = CCColor(red: red, green: green + 0.25, blue: blue)
+//                    
+//                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
+//                }
+//                else {
+//                    currentColor = CCColor(red: red - 0.25, green: green, blue: blue)
+//                    
+//                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
+//                }
+//            }
+//        }
+//        
+//        if green == 1 {
+//            if red < 1 {
+//                if blue == 0 {
+//                    currentColor = CCColor(red: red + 0.25, green: green, blue: blue)
+//                    
+//                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
+//                }
+//                else {
+//                    currentColor = CCColor(red: red, green: green, blue: blue - 0.25)
+//                    
+//                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
+//                }
+//            }
+//        }
+//        
+//        if red == 1 {
+//            if blue < 1 {
+//                if green == 0 {
+//                    currentColor = CCColor(red: red, green: green, blue: blue + 0.25)
+//                    
+//                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
+//                }
+//                else {
+//                    currentColor = CCColor(red: red, green: green - 0.25, blue: blue)
+//                    
+//                    transitionBackgroundColorToCurrentColor(duration: transitionTime)
+//                }
+//            }
+//        }
+//    }
     
-    func transitionBackgroundColorToCurrentColor(duration duration: Double) {
-        background.runAction(CCActionTintTo(duration: duration, color: currentColor))
+    func changeColorScheme() {
+        background.runAction(CCActionTintTo(duration: 0.5, color: colorPalette[currentColorIndex]))
+        
+        bottomGoal.runAction(CCActionTintTo(duration: 0.5, color: colorPalette[(currentColorIndex + 3) % colorPalette.count]))
+        topGoal.runAction(CCActionTintTo(duration: 0.5, color: colorPalette[(currentColorIndex + 3) % colorPalette.count]))
     }
     
     override func update(delta: CCTime) {

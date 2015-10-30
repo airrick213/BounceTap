@@ -16,7 +16,7 @@
 	<key>currentResolution</key>
 	<integer>0</integer>
 	<key>currentSequenceId</key>
-	<integer>5</integer>
+	<integer>0</integer>
 	<key>docDimensionsType</key>
 	<integer>0</integer>
 	<key>fileType</key>
@@ -124,9 +124,9 @@
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
-							<real>0.0</real>
-							<real>1</real>
+							<real>0.60784316062927246</real>
+							<real>0.3490196168422699</real>
+							<real>0.7137255072593689</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -909,6 +909,8 @@
 						<array/>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1744,7 +1746,7 @@
 						<key>displayName</key>
 						<string>bottomGoal</string>
 						<key>memberVarAssignmentName</key>
-						<string></string>
+						<string>bottomGoal</string>
 						<key>memberVarAssignmentType</key>
 						<integer>1</integer>
 						<key>physicsBody</key>
@@ -1774,16 +1776,16 @@
 							<key>points</key>
 							<array>
 								<array>
-									<real>317.66796875</real>
-									<real>-0.2031097412109375</real>
+									<real>318.56179809570312</real>
+									<real>-0.73413795232772827</real>
 								</array>
 								<array>
-									<real>317.70703125</real>
-									<real>4.57421875</real>
+									<real>319.70846557617188</real>
+									<real>10.333019256591797</real>
 								</array>
 								<array>
-									<real>1</real>
-									<real>5</real>
+									<real>1.3707475662231445</real>
+									<real>9.2979049682617188</real>
 								</array>
 								<array>
 									<real>1</real>
@@ -1794,16 +1796,16 @@
 							<array>
 								<array>
 									<array>
-										<real>317.66796875</real>
-										<real>-0.2031097412109375</real>
+										<real>318.56179809570312</real>
+										<real>-0.73413795232772827</real>
 									</array>
 									<array>
-										<real>317.70703125</real>
-										<real>4.57421875</real>
+										<real>319.70846557617188</real>
+										<real>10.333019256591797</real>
 									</array>
 									<array>
-										<real>1</real>
-										<real>5</real>
+										<real>1.3707475662231445</real>
+										<real>9.2979049682617188</real>
 									</array>
 									<array>
 										<real>1</real>
@@ -1844,7 +1846,7 @@
 								<key>value</key>
 								<array>
 									<real>1</real>
-									<real>5</real>
+									<real>10</real>
 									<integer>2</integer>
 									<integer>0</integer>
 								</array>
@@ -1938,16 +1940,16 @@
 							<key>points</key>
 							<array>
 								<array>
-									<real>320.63711547851562</real>
-									<real>0.55440390110015869</real>
+									<real>320.10800170898438</real>
+									<real>0.40894213318824768</real>
 								</array>
 								<array>
-									<real>320.19204711914062</real>
-									<real>5.3764314651489258</real>
+									<real>318.55142211914062</real>
+									<real>9.9636392593383789</real>
 								</array>
 								<array>
-									<real>1</real>
-									<real>5</real>
+									<real>1.1995257139205933</real>
+									<real>10.993564605712891</real>
 								</array>
 								<array>
 									<real>1</real>
@@ -1958,16 +1960,16 @@
 							<array>
 								<array>
 									<array>
-										<real>320.63711547851562</real>
-										<real>0.55440390110015869</real>
+										<real>320.10800170898438</real>
+										<real>0.40894213318824768</real>
 									</array>
 									<array>
-										<real>320.19204711914062</real>
-										<real>5.3764314651489258</real>
+										<real>318.55142211914062</real>
+										<real>9.9636392593383789</real>
 									</array>
 									<array>
-										<real>1</real>
-										<real>5</real>
+										<real>1.1995257139205933</real>
+										<real>10.993564605712891</real>
 									</array>
 									<array>
 										<real>1</real>
@@ -2016,7 +2018,7 @@
 								<key>value</key>
 								<array>
 									<real>1</real>
-									<real>5</real>
+									<real>10</real>
 									<integer>2</integer>
 									<integer>0</integer>
 								</array>
@@ -2215,7 +2217,7 @@
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2518,7 +2520,7 @@
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<true/>
+						<false/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2613,7 +2615,7 @@ go black!</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>0.20000000298023224</real>
+						<real>0.0</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2625,7 +2627,7 @@ go black!</string>
 							<real>1</real>
 							<real>1</real>
 							<real>1</real>
-							<real>0.20000000298023224</real>
+							<real>0.0</real>
 						</array>
 					</dict>
 					<dict>
@@ -2845,7 +2847,7 @@ go black!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<true/>
+						<false/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2940,20 +2942,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>0.20000000298023224</real>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-							<real>0.20000000298023224</real>
-						</array>
+						<real>1</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3248,20 +3237,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>0.20000000298023224</real>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-							<real>0.20000000298023224</real>
-						</array>
+						<real>1</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3483,7 +3459,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3906,7 +3882,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -4210,7 +4186,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -4633,7 +4609,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -4910,7 +4886,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -5305,7 +5281,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -6922,8 +6898,6 @@ touch the bottom!</string>
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -7036,7 +7010,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<true/>
+						<false/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -7131,7 +7105,7 @@ go black!</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>0.20000000298023224</real>
+						<real>0.0</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -7143,7 +7117,7 @@ go black!</string>
 							<real>1</real>
 							<real>1</real>
 							<real>1</real>
-							<real>0.20000000298023224</real>
+							<real>0.0</real>
 						</array>
 					</dict>
 					<dict>
