@@ -6,7 +6,7 @@ enum GameState {
 }
 
 enum GameMode {
-    case Normal
+    case Normal, TwoPlayer
 }
 
 class MainScene: CCNode, CCPhysicsCollisionDelegate {
@@ -20,6 +20,11 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     weak var newHighScoreLabel: CCLabelTTF!
     weak var ring: CCSprite!
     weak var volumeButton: CCButton!
+    weak var firstPlayerScoreLabel: CCLabelTTF!
+    weak var secondPlayerScoreLabel: CCLabelTTF!
+    weak var twoPlayerResultLabel: CCLabelTTF!
+    weak var topGoal: CCNodeColor!
+    weak var topGoalInstructions: CCLabelTTF!
     
     var gameState: GameState = .Title
     var gameMode: GameMode = .Normal
@@ -37,6 +42,26 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     var score: Int = 0 {
         didSet {
             scoreLabel.string = "\(score)"
+        }
+    }
+    
+    var firstPlayerScore: Int = 0 {
+        didSet {
+            firstPlayerScoreLabel.string = "\(firstPlayerScore)"
+            
+            if firstPlayerScore == 7 {
+                triggerGameOver()
+            }
+        }
+    }
+    
+    var secondPlayerScore: Int = 0 {
+        didSet {
+            secondPlayerScoreLabel.string = "\(secondPlayerScore)"
+            
+            if secondPlayerScore == 7 {
+                triggerGameOver()
+            }
         }
     }
     
@@ -61,7 +86,28 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     func ready() {
         gameMode = .Normal
         
+        score = 0
         resetSettings()
+        
+        scoreLabel.visible = true
+        firstPlayerScoreLabel.visible = false
+        secondPlayerScoreLabel.visible = false
+        
+        topGoal.visible = false
+    }
+    
+    func twoPlayerReady() {
+        gameMode = .TwoPlayer
+        
+        firstPlayerScore = 0
+        secondPlayerScore = 0
+        resetSettings()
+        
+        scoreLabel.visible = false
+        firstPlayerScoreLabel.visible = true
+        secondPlayerScoreLabel.visible = true
+        
+        topGoal.visible = true
     }
     
     func resetSettings() {
@@ -78,9 +124,10 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         gameState = .Ready
         self.animationManager.runAnimationsForSequenceNamed("Ready")
         
-        score = 0
-        timeLeft = 10
+        timeLeft = 5
         newHighScoreLabel.visible = false
+        
+        topGoalInstructions.visible = (gameMode == .TwoPlayer)
         
         background.opacity = 1
         currentColor = CCColor(red: 0, green: 0, blue: 1)
@@ -138,12 +185,43 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             if gameMode == .Normal {
                 triggerGameOver()
             }
+            else { //if gameMode == .TwoPlayer
+                secondPlayerScore++
+                twoPlayerRoundOver()
+            }
         }
         else {
             circle.physicsBody.velocity.y = -circle.physicsBody.velocity.y
         }
         
         return true
+    }
+    
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, circle: CCNode!, topGoal: CCNode!) -> Bool {
+        if gameState == .GameOver {
+            return true
+        }
+        
+        if gameState == .Playing {
+            if gameMode == .TwoPlayer {
+                firstPlayerScore++
+                twoPlayerRoundOver()
+            }
+        }
+        else {
+            circle.physicsBody.velocity.y = -circle.physicsBody.velocity.y
+        }
+        
+        return true
+    }
+    
+    func twoPlayerRoundOver() {
+        if firstPlayerScore < 7 && secondPlayerScore < 7 {
+            resetSettings()
+        }
+        else {
+            triggerGameOver()
+        }
     }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
@@ -154,11 +232,13 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             gameState = .Playing
             
             self.animationManager.runAnimationsForSequenceNamed("Playing")
+            topGoalInstructions.visible = false
         }
         
         if circle.tapped(touch.locationInWorld()) {
             if gameMode == .Normal {
                 score++
+                timeLeft = 5
             }
             
             circle.bounceTap()
@@ -168,12 +248,22 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             self.animationManager.runAnimationsForSequenceNamed("Spin")
             OALSimpleAudio.sharedInstance().playEffect("beep-ping.wav", volume: volume, pitch: Float(circle.totalVelocity / 500), pan: 0, loop: false)
             
-            if gameMode == .Normal {
-                timeLeft = 5
-            }
+            speedUpTrack()
         }
         else {
-            triggerGameOver()
+            if gameMode == .Normal {
+                triggerGameOver()
+            }
+            else {
+                if touch.locationInWorld().y < CCDirector.sharedDirector().viewSize().height / 2 {
+                    secondPlayerScore++
+                }
+                else {
+                    firstPlayerScore++
+                }
+                
+                twoPlayerRoundOver()
+            }
         }
     }
     
@@ -210,22 +300,38 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
        
         circle.physicsBody.affectedByGravity = true
         
-        self.animationManager.runAnimationsForSequenceNamed("GameOver")
+        scoreLabel.visible = false
+        firstPlayerScoreLabel.visible = false
+        secondPlayerScoreLabel.visible = false
         
-        gameOverScoreLabel.string = "Score: \(score)"
+        if gameMode == .Normal {
+            self.animationManager.runAnimationsForSequenceNamed("NormalGameOver")
         
-        let highScore: Int = NSUserDefaults().integerForKey("high_score")
+            gameOverScoreLabel.string = "Score: \(score)"
         
-        if score <= highScore {
-            highScoreLabel.string = "High Score: \(highScore)"
+            let highScore: Int = NSUserDefaults().integerForKey("high_score")
+        
+            if score <= highScore {
+                highScoreLabel.string = "High Score: \(highScore)"
+            }
+            else {
+                highScoreLabel.string = "High Score: \(score)"
+                NSUserDefaults().setInteger(score, forKey: "high_score")
+            
+                reportHighScoreToGameCenter()
+            
+                newHighScoreLabel.visible = true
+            }
         }
-        else {
-            highScoreLabel.string = "High Score: \(score)"
-            NSUserDefaults().setInteger(score, forKey: "high_score")
+        else { //if gameMode == .TwoPlayer
+            self.animationManager.runAnimationsForSequenceNamed("TwoPlayerGameOver")
             
-            reportHighScoreToGameCenter()
-            
-            newHighScoreLabel.visible = true
+            if firstPlayerScore >= 7 {
+                twoPlayerResultLabel.string = "First Player Won!"
+            }
+            else {
+                twoPlayerResultLabel.string = "Second Player Won!"
+            }
         }
     }
     

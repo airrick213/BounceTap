@@ -38,10 +38,9 @@ class Circle: CCSprite {
             
         if xVelocity > 0 {
             physicsBody.velocity.x *= -1
-            
-            if yVelocity > 0 {
-                physicsBody.velocity.y *= -1
-            }
+        }
+        if yVelocity > 0 {
+            physicsBody.velocity.y *= -1
         }
     }
     
