@@ -27,6 +27,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     weak var topGoal: CCNodeColor!
     weak var bottomGoal: CCNodeColor!
     weak var topGoalInstructions: CCLabelTTF!
+    weak var instructions: CCLabelTTF!
     
     var gameState: GameState = .Title
     var gameMode: GameMode = .Normal
@@ -149,6 +150,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         newHighScoreLabel.visible = false
         
         topGoalInstructions.visible = (gameMode == .TwoPlayer)
+        instructions.visible = (gameMode == .Normal)
         
         background.opacity = 1
         currentColorIndex = 0
@@ -256,6 +258,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             
             self.animationManager.runAnimationsForSequenceNamed("Playing")
             topGoalInstructions.visible = false
+            instructions.visible = false
         }
         
         if circle.tapped(touch.locationInWorld()) {
@@ -322,7 +325,6 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         
         NSThread.sleepForTimeInterval(0.5)
        
-//        OALSimpleAudio.sharedInstance().playEffect("glass-ping.wav", volume: volume / 2, pitch: 0.5, pan: 0, loop: false)
         AudioServicesPlayAlertSound(UInt32(kSystemSoundID_Vibrate))
         
         circle.physicsBody.affectedByGravity = true
@@ -354,10 +356,10 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             self.animationManager.runAnimationsForSequenceNamed("TwoPlayerGameOver")
             
             if firstPlayerScore >= 7 {
-                twoPlayerResultLabel.string = "First Player Won!"
+                twoPlayerResultLabel.string = "First Player\nWon!"
             }
             else {
-                twoPlayerResultLabel.string = "Second Player Won!"
+                twoPlayerResultLabel.string = "Second Player\nWon!"
             }
         }
     }
