@@ -79,7 +79,6 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         didSet {
 //            if adCounter == 5 {
 //                if adCounter >= 10 {
-                    iAdHandler.sharedInstance.loadInterstitialAd()
                     iAdHandler.sharedInstance.displayInterstitialAd()
                     
                     adCounter = 0
@@ -102,6 +101,8 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         userInteractionEnabled = true
         
         setUpGameCenter()
+        
+        iAdHandler.sharedInstance.loadInterstitialAd()
         
         gamePhysicsNode.collisionDelegate = self
         
