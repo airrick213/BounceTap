@@ -75,17 +75,18 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         }
     }
     
-    var adCounter: Int = 0 {
-        didSet {
-//            if adCounter == 5 {
-//                if adCounter >= 10 {
-                    iAdHandler.sharedInstance.displayInterstitialAd()
-                    
-                    adCounter = 0
-//                }
-//            }
-        }
-    }
+//    var adCounter: Int = 0 {
+//        didSet {
+////            if adCounter == 5 {
+////                if adCounter >= 10 {
+//                    iAdHandler.sharedInstance.loadInterstitialAd()
+//                    iAdHandler.sharedInstance.displayInterstitialAd()
+//                    
+//                    adCounter = 0
+////                }
+////            }
+//        }
+//    }
     
     let colorPalette: [CCColor] = [
         CCColor(red: 155.0 / 255.0, green: 89.0 / 255.0, blue: 182.0 / 255.0), //amethyst
@@ -101,8 +102,6 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         userInteractionEnabled = true
         
         setUpGameCenter()
-        
-        iAdHandler.sharedInstance.loadInterstitialAd()
         
         gamePhysicsNode.collisionDelegate = self
         
@@ -346,8 +345,8 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         scoreLabel.visible = false
         firstPlayerScoreLabel.visible = false
         secondPlayerScoreLabel.visible = false
-        
-        adCounter++
+                
+//        adCounter++
         
         if gameMode == .Normal {
             self.animationManager.runAnimationsForSequenceNamed("NormalGameOver")
