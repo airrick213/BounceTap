@@ -75,6 +75,19 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         }
     }
     
+    var adCounter: Int = 0 {
+        didSet {
+//            if adCounter == 5 {
+//                if adCounter >= 10 {
+                    iAdHandler.sharedInstance.loadInterstitialAd()
+                    iAdHandler.sharedInstance.displayInterstitialAd()
+                    
+                    adCounter = 0
+//                }
+//            }
+        }
+    }
+    
     let colorPalette: [CCColor] = [
         CCColor(red: 155.0 / 255.0, green: 89.0 / 255.0, blue: 182.0 / 255.0), //amethyst
         CCColor(red: 52.0 / 255.0, green: 152.0 / 255.0, blue: 219.0 / 255.0), //peter river (blue)
@@ -332,6 +345,8 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         scoreLabel.visible = false
         firstPlayerScoreLabel.visible = false
         secondPlayerScoreLabel.visible = false
+        
+        adCounter++
         
         if gameMode == .Normal {
             self.animationManager.runAnimationsForSequenceNamed("NormalGameOver")
