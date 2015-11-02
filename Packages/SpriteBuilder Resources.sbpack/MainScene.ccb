@@ -16,7 +16,7 @@
 	<key>currentResolution</key>
 	<integer>0</integer>
 	<key>currentSequenceId</key>
-	<integer>5</integer>
+	<integer>3</integer>
 	<key>docDimensionsType</key>
 	<integer>0</integer>
 	<key>fileType</key>
@@ -2586,7 +2586,7 @@ go black!</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>0.20000000298023224</real>
+						<real>0.0</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2598,7 +2598,7 @@ go black!</string>
 							<real>1</real>
 							<real>1</real>
 							<real>1</real>
-							<real>0.20000000298023224</real>
+							<real>0.0</real>
 						</array>
 					</dict>
 					<dict>
@@ -2706,8 +2706,6 @@ go black!</string>
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 				<key>seqExpanded</key>
 				<true/>
 			</dict>
@@ -2822,7 +2820,7 @@ go black!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<true/>
+						<false/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2917,20 +2915,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>0.20000000298023224</real>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-							<real>0.20000000298023224</real>
-						</array>
+						<real>1</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3225,20 +3210,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>0.20000000298023224</real>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-							<real>0.20000000298023224</real>
-						</array>
+						<real>1</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3458,7 +3430,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3881,7 +3853,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -4185,7 +4157,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -4608,7 +4580,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -4885,7 +4857,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -5280,7 +5252,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -5590,6 +5562,8 @@ touch the bottom!</string>
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -5647,7 +5621,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -5668,7 +5642,7 @@ touch the bottom!</string>
 							<real>420</real>
 							<integer>0</integer>
 							<integer>2</integer>
-							<integer>1</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -5895,7 +5869,7 @@ touch the bottom!</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -5916,7 +5890,7 @@ touch the bottom!</string>
 							<real>370</real>
 							<integer>0</integer>
 							<integer>2</integer>
-							<integer>1</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -6366,8 +6340,8 @@ touch the bottom!</string>
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>0.0</real>
+							<real>0.0</real>
 							<real>1</real>
 							<real>1</real>
 						</array>
