@@ -21,6 +21,7 @@
 		0719E3B71BDCE64500E251B3 /* BounceTap-soundtrack@85bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E3AC1BDCE64500E251B3 /* BounceTap-soundtrack@85bpm.wav */; };
 		0719E3B81BDCE64500E251B3 /* BounceTap-soundtrack@90bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E3AD1BDCE64500E251B3 /* BounceTap-soundtrack@90bpm.wav */; };
 		0719E3B91BDCE64500E251B3 /* BounceTap-soundtrack@95bpm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0719E3AE1BDCE64500E251B3 /* BounceTap-soundtrack@95bpm.wav */; };
+		07CFD6011BE935400057E62D /* MainImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07CFD6001BE935400057E62D /* MainImages.xcassets */; };
 		07F429E71BE30D8F0095E3EA /* glass-ping.wav in Resources */ = {isa = PBXBuildFile; fileRef = 07F429E61BE30D8F0095E3EA /* glass-ping.wav */; };
 		07F7161A1BE6BA5900ADA8D7 /* iAdHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F716191BE6BA5900ADA8D7 /* iAdHandler.swift */; };
 		07F7161E1BE6BD9800ADA8D7 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F7161D1BE6BD9800ADA8D7 /* close.png */; };
@@ -179,6 +180,7 @@
 		0719E3AC1BDCE64500E251B3 /* BounceTap-soundtrack@85bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@85bpm.wav"; sourceTree = "<group>"; };
 		0719E3AD1BDCE64500E251B3 /* BounceTap-soundtrack@90bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@90bpm.wav"; sourceTree = "<group>"; };
 		0719E3AE1BDCE64500E251B3 /* BounceTap-soundtrack@95bpm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BounceTap-soundtrack@95bpm.wav"; sourceTree = "<group>"; };
+		07CFD6001BE935400057E62D /* MainImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = MainImages.xcassets; path = "BounceTap iOS/MainImages.xcassets"; sourceTree = SOURCE_ROOT; };
 		07F429E61BE30D8F0095E3EA /* glass-ping.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "glass-ping.wav"; sourceTree = "<group>"; };
 		07F716191BE6BA5900ADA8D7 /* iAdHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iAdHandler.swift; sourceTree = "<group>"; };
 		07F7161D1BE6BD9800ADA8D7 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
@@ -574,6 +576,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				07CFD6001BE935400057E62D /* MainImages.xcassets */,
 				07F7161D1BE6BD9800ADA8D7 /* close.png */,
 				7A40366119DDF8C2007B6E8F /* Platforms */,
 				5B12100D197483EE004C1E1D /* res */,
@@ -811,6 +814,7 @@
 				0719E3B01BDCE64500E251B3 /* BounceTap-soundtrack@100bpm.wav in Resources */,
 				07F429E71BE30D8F0095E3EA /* glass-ping.wav in Resources */,
 				0719E3B91BDCE64500E251B3 /* BounceTap-soundtrack@95bpm.wav in Resources */,
+				07CFD6011BE935400057E62D /* MainImages.xcassets in Resources */,
 				0719E3B41BDCE64500E251B3 /* BounceTap-soundtrack@120bpm.wav in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 			);

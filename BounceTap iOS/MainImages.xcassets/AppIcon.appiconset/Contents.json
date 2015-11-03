@@ -3,6 +3,12 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
+      "filename" : "Settings.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "iphone",
       "filename" : "Settings@2x.png",
       "scale" : "2x"
     },
@@ -25,6 +31,18 @@
       "scale" : "3x"
     },
     {
+      "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "iPhone-old.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "iPhone-old@2x.png",
+      "scale" : "2x"
+    },
+    {
       "size" : "60x60",
       "idiom" : "iphone",
       "filename" : "iPhone@2x.png",
@@ -39,13 +57,13 @@
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "Settings.png",
+      "filename" : "Settings-1.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "Settings@2x.png",
+      "filename" : "Settings@2x-1.png",
       "scale" : "2x"
     },
     {
@@ -58,6 +76,30 @@
       "size" : "40x40",
       "idiom" : "ipad",
       "filename" : "iPad Spotlight@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "iPad Spotlight(50).png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "iPad Spotlight(50)@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "72x72",
+      "idiom" : "ipad",
+      "filename" : "iPad-old.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "72x72",
+      "idiom" : "ipad",
+      "filename" : "iPad-old@2x.png",
       "scale" : "2x"
     },
     {
