@@ -175,7 +175,14 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         circle.totalVelocity = 150
         
         circle.physicsBody.velocity.x = CGFloat(arc4random_uniform(UInt32(circle.totalVelocity)))
+        if arc4random_uniform(2) < 1 {
+            circle.physicsBody.velocity.x *= -1
+        }
+        
         circle.physicsBody.velocity.y = circle.findComponentVelocity(circle.physicsBody.velocity.x)
+        if arc4random_uniform(2) < 1 {
+            circle.physicsBody.velocity.y *= -1
+        }
     }
     
     func changeVolume() {
