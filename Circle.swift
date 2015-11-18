@@ -12,7 +12,7 @@ class Circle: CCSprite {
     
     var totalVelocity: CGFloat = 0
     
-    let kRadius: CGFloat = 60
+    let kRadius: CGFloat = 40
     
     func findComponentVelocity(component1: CGFloat) -> CGFloat {
         return sqrt(totalVelocity * totalVelocity - component1 * component1)
@@ -22,7 +22,7 @@ class Circle: CCSprite {
         let xCoord = position.x * CCDirector.sharedDirector().viewSize().width
         let yCoord = position.y * CCDirector.sharedDirector().viewSize().height
         
-        return xCoord - kRadius / 2 < tapLocation.x && xCoord + kRadius / 2 > tapLocation.x && yCoord - kRadius / 2 < tapLocation.y && yCoord + kRadius / 2 > tapLocation.y
+        return xCoord - kRadius < tapLocation.x && xCoord + kRadius > tapLocation.x && yCoord - kRadius < tapLocation.y && yCoord + kRadius > tapLocation.y
     }
     
     func bounceTap() {

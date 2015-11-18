@@ -210,14 +210,6 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         return true
     }
     
-    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, circle: CCNode!, horizontalWall: CCNode!) -> Bool {
-        if gameState != .GameOver {
-            circle.physicsBody.velocity.y = -circle.physicsBody.velocity.y
-        }
-        
-        return true
-    }
-    
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, circle: CCNode!, bottomGoal: CCNode!) -> Bool {
         if gameState == .GameOver {
             return true
