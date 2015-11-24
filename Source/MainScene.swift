@@ -33,6 +33,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     var gameMode: GameMode = .Normal
     var volume: Float = 1.0
     var timeIntoTrack: CCTime = 0
+    var maxSpeed = false
     
     var timeLeft: Float = 5 {
         didSet {
@@ -172,7 +173,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     }
     
     func startCircleDefaultVelocity() {
-        circle.totalVelocity = 150
+        circle.totalVelocity = circle.kStartingVelocity
         
         circle.physicsBody.velocity.x = CGFloat(arc4random_uniform(UInt32(circle.totalVelocity)))
         if arc4random_uniform(2) < 1 {
@@ -196,7 +197,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             volume = 1
             
             if gameState == .Title {
-                OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack@\((Int(circle.totalVelocity) - 150) / 10 + 75)bpm.wav", volume: volume, pan: 0, loop: true)
+                OALSimpleAudio.sharedInstance().playBg("BounceTap-soundtrack@\(Int((circle.totalVelocity - circle.kStartingVelocity) / (circle.kVelocityIncrement / 5)) + 75)bpm.wav", volume: volume, pan: 0, loop: true)
                 timeIntoTrack = 0
             }
         }
@@ -285,9 +286,15 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             currentColorIndex++
             
             self.animationManager.runAnimationsForSequenceNamed("Spin")
-            OALSimpleAudio.sharedInstance().playEffect("beep-ping.wav", volume: volume, pitch: Float(circle.totalVelocity / 500), pan: 0, loop: false)
+            OALSimpleAudio.sharedInstance().playEffect("beep-ping.wav", volume: volume * Float(circle.totalVelocity / circle.kMaxVelocity), pitch: 0.8, pan: 0, loop: false)
             
-            speedUpTrack()
+            if !maxSpeed {
+                speedUpTrack()
+                
+                if (circle.totalVelocity == circle.kMaxVelocity) {
+                    maxSpeed = true
+                }
+            }
         }
         else {
             if gameMode == .Normal {
@@ -307,7 +314,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     }
     
     func speedUpTrack() {
-        let newBpm: Double = Double((circle.totalVelocity - 150) / 10 + 75)
+        let newBpm: Double = Double((circle.totalVelocity - circle.kStartingVelocity) / (circle.kVelocityIncrement / 5) + 75)
         let oldBpm = newBpm - 5
         let beatsIntoTrack = (Double(timeIntoTrack) / 60 * oldBpm) % 32.0 //64 beats total
         timeIntoTrack = beatsIntoTrack / newBpm * 60
@@ -334,6 +341,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         
         circle.physicsBody.velocity.x = 0
         circle.physicsBody.velocity.y = 0
+        maxSpeed = false
         
         NSThread.sleepForTimeInterval(0.5)
        
@@ -351,15 +359,15 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             self.animationManager.runAnimationsForSequenceNamed("NormalGameOver")
         
             gameOverScoreLabel.string = "Score: \(score)"
-        
-            let highScore: Int = NSUserDefaults().integerForKey("high_score")
+            
+            let highScore: Int = NSUserDefaults().integerForKey("highScore")
         
             if score <= highScore {
                 highScoreLabel.string = "High Score: \(highScore)"
             }
             else {
                 highScoreLabel.string = "High Score: \(score)"
-                NSUserDefaults().setInteger(score, forKey: "high_score")
+                NSUserDefaults().setInteger(score, forKey: "highScore")
             
                 reportHighScoreToGameCenter()
             

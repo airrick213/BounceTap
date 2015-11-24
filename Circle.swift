@@ -13,6 +13,9 @@ class Circle: CCSprite {
     var totalVelocity: CGFloat = 0
     
     let kRadius: CGFloat = 40
+    let kStartingVelocity: CGFloat = 150
+    let kMaxVelocity: CGFloat = 950
+    let kVelocityIncrement: CGFloat = 100
     
     func findComponentVelocity(component1: CGFloat) -> CGFloat {
         return sqrt(totalVelocity * totalVelocity - component1 * component1)
@@ -26,8 +29,8 @@ class Circle: CCSprite {
     }
     
     func bounceTap() {
-        if totalVelocity < 600 {
-            totalVelocity += 50
+        if totalVelocity < kMaxVelocity {
+            totalVelocity += kVelocityIncrement
         }
         
         let xVelocity = physicsBody.velocity.x
